@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
-
 import rootReducer from '../src/reducers';
-import { middlewares } from '../src/configureStore';
 
 
 export const middlewares = [ReduxThunk];
