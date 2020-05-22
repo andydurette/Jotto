@@ -3,7 +3,7 @@ import { getLetterMatchCount } from './';
 describe('getLetterMatchCount', () => {
   const secretWord = 'party';
   test('returns correct count when there are no matching letters', () => {
-    const leterMatchCount = getLetterMatchCount('bones', secretWord);
+    const letterMatchCount = getLetterMatchCount('bones', secretWord);
     expect(letterMatchCount).toBe(0);
   });
   test('returns the correct count when there are 3 matching letters', () => {
