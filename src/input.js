@@ -16,7 +16,13 @@ function Input({ secretWord }) {
         onChange={(event) => setCurrentGuess(event.target.value)}
         />
         <button
-          datta-test="submit-button"
+          data-test="submit-button"
+          onClick={(evt) => {
+            evt.preventDefault();
+            //TODO: update guessWords
+            //TODO: check against secretWord and update success if needed
+            setCurrentGuess("");
+          }}
           className="btn btn-primary mb-2">
           Submit
         </button>
