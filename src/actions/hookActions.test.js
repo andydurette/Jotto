@@ -10,9 +10,9 @@ describe('moxios tests', () => {
     moxios.uninstall();
   });
 
-  test('calls the getSecretWord callback on axios response', async () =>{
+  test('calls the getSecretWord callback on axios response', async () => {
     const secretWord = 'party';
-    
+
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -26,7 +26,7 @@ describe('moxios tests', () => {
 
     await getSecretWord(mockSetSecretWord);
 
-    // see wheather mock was run with the correct argument
+    // see whether mock was run with the correct argument
     expect(mockSetSecretWord).toHaveBeenCalledWith(secretWord);
 
   });

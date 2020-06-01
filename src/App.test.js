@@ -9,7 +9,7 @@ const mockGetSecretWord = jest.fn();
 
 /**
  * Setup function for app component.
- * @param {string} secretWord -desired scretWord state value for test
+ * @param {string} secretWord - desired secretWord state value for test
  * @returns {ReactWrapper}
  */
 const setup = (secretWord="party") => {
@@ -17,22 +17,22 @@ const setup = (secretWord="party") => {
   hookActions.getSecretWord = mockGetSecretWord;
 
   const mockUseReducer = jest.fn()
-  .mockReturnValue([
-    { secretWord },
-    jest.fn()
-  ]);
+    .mockReturnValue([
+      { secretWord, language: 'en' },
+      jest.fn()
+    ]);
 
   React.useReducer = mockUseReducer;
 
-  // use mount, bcause useEffect not called on 'shallow'
-  // https://github.com/aitbnb/enzyme/issues/2086
+  // use mount, because useEffect not called on `shallow`
+  // https://github.com/airbnb/enzyme/issues/2086
   return mount(<App />);
 }
 
 test('App renders without error', () => {
   const wrapper = setup();
   const component = findByTestAttr(wrapper, 'component-app');
-  expect (component.length).toBe(1);
+  expect(component.length).toBe(1);
 });
 
 describe('getSecretWord calls', () => {
@@ -47,7 +47,7 @@ describe('getSecretWord calls', () => {
     mockGetSecretWord.mockClear();
 
     // wrapper.update() doesn't trigger update
-    // (issue forked from http://github.com/airbnb/enzyme/issues/2091)
+    // (issue forked from https://github.com/airbnb/enzyme/issues/2091)
     wrapper.setProps();
 
     expect(mockGetSecretWord).not.toHaveBeenCalled();
@@ -58,12 +58,11 @@ describe("secretWord is not null", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = setup("party");
-  })
+  });
 
   test("renders app when secretWord is not null", () => {
     const appComponent = findByTestAttr(wrapper, "component-app");
     expect(appComponent.exists()).toBe(true);
-
   });
   test("does not render spinner when secretWord is not null", () => {
     const spinnerComponent = findByTestAttr(wrapper, "spinner");
@@ -76,12 +75,11 @@ describe("secretWord is null", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = setup(null);
-  })
+  });
 
   test("does not render app when secretWord is null", () => {
     const appComponent = findByTestAttr(wrapper, "component-app");
     expect(appComponent.exists()).toBe(false);
-
   });
   test("renders spinner when secretWord is null", () => {
     const spinnerComponent = findByTestAttr(wrapper, "spinner");
